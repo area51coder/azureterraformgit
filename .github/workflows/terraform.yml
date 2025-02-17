@@ -17,12 +17,18 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Initialize Terraform
+      env:
+        TERRAFORM_CLOUD_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
       run: terraform init
 
     - name: Validate Terraform
+      env:
+        TERRAFORM_CLOUD_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}    
       run: terraform validate
 
     - name: Terraform Plan
+      env:
+        TERRAFORM_CLOUD_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}    
       run: terraform plan
 
     - name: Terraform Apply
@@ -32,3 +38,4 @@ jobs:
         AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
         AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        TERRAFORM_CLOUD_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}  
